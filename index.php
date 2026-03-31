@@ -65,7 +65,7 @@
     <div class="sidebar">
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="dist/img/franco1.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $_SESSION['username']; ?></a>
@@ -94,7 +94,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Guru</p></a></li>
               <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Siswa</p></a></li>
-              <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Mata Pelajaran</p></a></li>
+              <li class="nav-item"><a href="index.php?page=mapel" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Mata Pelajaran</p></a></li>
               <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Kelas</p></a></li>
             </ul>
             <?php endif; ?>   
@@ -161,7 +161,22 @@
             <div class="card">
               <div class="card-body">
                 <h5 class="card-title">Dashboard</h5>
-                <p class="card-text">Selamat datang Di Website Jadwal Pelajaran Sekolah Kami, <?php echo $_SESSION['Username']; ?>!</p>
+                <p class="card-text">
+                  <?php
+                    if (isset($_GET['page'])) {
+                    $page = $_GET['page'];
+                    } else {
+                    $page = "";
+                    }
+                    if ($page == "") {
+                    include "page/dashboard.php";
+                    } elseif (!file_exists("page/$page.php")) {
+                    echo "File Tidak Ditemukan";
+                    } else {
+                    include "page/$page.php";
+                  }
+                  ?>
+                </p>
               </div>
             </div>
           </div>
