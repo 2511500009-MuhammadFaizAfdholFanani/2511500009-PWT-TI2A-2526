@@ -2,23 +2,23 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Data kelas</h1>
+                <h1 class="m-0 text-dark">Data Guru</h1>
             </div>
         </div>
     </div>
 </div>
 
 <?php
-// Proses hapus data kelas  
+// Proses hapus data guru  
 if(isset($_GET['action'])) {
     if($_GET['action'] == "hapus") {
         $kd = $_GET['kd'];
-        $query = mysqli_query($koneksi, "DELETE FROM kelas WHERE Id_kelas = '$kd' ");
+        $query = mysqli_query($koneksi, "DELETE FROM guru WHERE kd_guru = '$kd' ");
         if ($query){
             echo '
             <div class="alert alert-warning alert-dismissible">
             Berhasil Di Hapus</div>';
-            echo '<meta http-equiv="refresh" content="1;url=index.php?page=kelas">';
+            echo '<meta http-equiv="refresh" content="1;url=index.php?page=guru">';
         }
     }
 }
@@ -28,31 +28,39 @@ if(isset($_GET['action'])) {
   <div class="container-fluid">
     <div class="card">
       <div class="card-body">
-        <a href="index.php?page=tambah_kelas" class="btn btn-primary btn-sm">Tambah Kelas</a>
+        <a href="index.php?page=tambah_guru" class="btn btn-primary btn-sm">Tambah Guru</a>
         <table class="table table-striped">
           <thead>
             <tr>
               <th>NO</th>
-              <th>Id kelas</th>
-              <th>Nama kelas</th>
+              <th>Kode Guru</th>
+              <th>Nama Guru</th>
+              <th>Jenis Kelamin</th>
+              <th>Pendidikan Terakhir</th>
+              <th>HP</th>
+              <th>Alamat</th>
               <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
             <?php
             $no = 0;
-            $query = mysqli_query($koneksi, "SELECT * FROM kelas");
+            $query = mysqli_query($koneksi, "SELECT * FROM guru");
             while ($result = mysqli_fetch_array($query)) {
               $no++;
             ?>
             <tr>
               <td><?= $no; ?></td>
-              <td><?= $result['Id_kelas']; ?></td>
-              <td><?= $result['Nm_kelas']; ?></td>
+              <td><?= $result['kd_guru']; ?></td>
+              <td><?= $result['nm_guru']; ?></td>
+              <td><?= $result['jenkel']; ?></td>
+              <td><?= $result['pend_terakhir']; ?></td>
+              <td><?= $result['hp']; ?></td>
+              <td><?= $result['alamat']; ?></td>
               <td>
-                <a href="index.php?page=kelas&action=hapus&kd=<?= $result['Id_kelas'] ?>" title="">
+                <a href="index.php?page=guru&action=hapus&kd=<?= $result['kd_guru'] ?>" title="">
                   <span class="badge badge-danger">Hapus</span></a>
-                <a href="index.php?page=edit_kelas&kd=<?= $result['Id_kelas'] ?>" title="">
+                <a href="index.php?page=edit_guru&kd=<?= $result['kd_guru'] ?>" title="">
                   <span class="badge badge-warning">Edit</span></a>
               </td>
             </tr>

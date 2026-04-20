@@ -2,25 +2,25 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Edit Mata Pelajaran</h1>
+                <h1 class="m-0 text-dark">Edit Kelas</h1>
             </div>
         </div>
     </div>
 </div>
 
 <?php
-// Ambil data berdasarkan kd_mapel dari parameter GET
+// Ambil data berdasarkan Id_kelas dari parameter GET
 $kd = $_GET['kd'];
-$edit = mysqli_fetch_array(mysqli_query($koneksi,"SELECT * FROM kelas WHERE kd_kelas='$kd'"));
+$edit = mysqli_fetch_array(mysqli_query($koneksi,"SELECT * FROM kelas WHERE Id_kelas='$kd'"));
 
 // Proses update data kelas
 if(isset($_POST['tambah'])){
-    $kd_kelas = $_POST['kd_kelas'];
+    $id_kelas = $_POST['id_kelas'];
     $nm_kelas = $_POST['nm_kelas'];
 
-    $insert = mysqli_query($koneksi,"UPDATE kelas SET nm_kelas='$nm_kelas' WHERE kd_kelas='$kd_kelas' ");
-    if($insert){
-        echo '<div class="alert alert-info-dismissible">
+    $update = mysqli_query($koneksi,"UPDATE kelas SET Nm_kelas='$nm_kelas' WHERE Id_kelas='$id_kelas' ");
+    if($update){
+        echo '<div class="alert alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">X</button>
         <h5><i class="icon fas fa-info"></i> Info </h5>
         <h4>Berhasil Disimpan</h4></div>';
@@ -41,12 +41,12 @@ if(isset($_POST['tambah'])){
                 <div class="card-body p-2">
                     <form method="POST" action="">
                         <div class="form-group">
-                            <label for="kd_kelas">Kode Kelas</label>
-                            <input type="text" name="kd_kelas" value="<?= $edit['kd_kelas']; ?>" class="form-control" readonly>
+                            <label for="id_kelas">ID Kelas</label>
+                            <input type="text" name="id_kelas" value="<?= $edit['Id_kelas']; ?>" class="form-control" readonly>
                         </div>
                         <div class="form-group">
                             <label for="nm_kelas">Nama Kelas</label>
-                            <input type="text" name="nm_kelas" value="<?= $edit['nm_kelas']; ?>" id="nm_kelas" placeholder="Nama kelas" class="form-control">
+                            <input type="text" name="nm_kelas" value="<?= $edit['Nm_kelas']; ?>" id="nm_kelas" placeholder="Nama kelas" class="form-control">
                         </div>
                         <div class="card-footer">
                             <input type="submit" class="btn btn-primary" name="tambah" value="simpan">
