@@ -115,6 +115,8 @@
             <?php endif; ?> 
           </li>
 
+          <li class="nav-item"><a href="index.php?page=ganti_password" class="nav-link"><i class="nav-icon fas fa-key"></i><p>Ganti Password</p></a></li>
+
           <?php if ($role == 'admin') : ?>
           <li class="nav-item">
             <a href="#" class="nav-link active">

@@ -39,13 +39,17 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="Password" name="Password" class="form-control" id="Password" placeholder="Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+          <input type="password" name="Password" class="form-control" id="Password" placeholder="Password">
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+                    </div>
+                <div class="input-group-text" onclick="togglePassword()">
+                <span id="toggleIcon" class="fas fa-eye"></span>
             </div>
-          </div>
-        </div>
+            </div>
+            </div>
+
         
           <!-- /.col -->
           <div class="col-15">
@@ -66,6 +70,22 @@
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
+<script>
+function togglePassword() {
+  const passwordInput = document.getElementById("Password");
+  const toggleIcon = document.getElementById("toggleIcon");
+
+  if (passwordInput.type === "password") {
+    passwordInput.type = "text";
+    toggleIcon.classList.remove("fa-eye");
+    toggleIcon.classList.add("fa-eye-slash");
+  } else {
+    passwordInput.type = "password";
+    toggleIcon.classList.remove("fa-eye-slash");
+    toggleIcon.classList.add("fa-eye");
+  }
+}
+</script>
 </body>
 </html>
 
@@ -79,17 +99,20 @@ if (isset($_POST['Username'])) {
     } else {
         $userquery = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM users WHERE Username = '$Username' AND Password = '$Password'"));
         
-        if ($userquery) {
-            $_SESSION['Role'] = $userquery['Role'];
-            $_SESSION['Username'] = $Username;
-            header("location:index.php");
-        } else {
-            echo '<div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                    <h5><i class="icon fas fa-ban"></i> Alert!</h5>
-                    Login gagal
-                  </div>';
-        }
+      if ($userquery) {
+    $_SESSION['Role'] = $userquery['Role'];
+    $_SESSION['Username'] = $Username;
+
+    // setelah ambil data user dari database
+if ($userquery['Password'] == '1234' && ($userquery['Role'] == 'guru' || $userquery['Role'] == 'siswa')) {
+    header("Location: index.php?page=ganti_password");
+    exit;
+} else {
+    header("Location: index.php");
+    exit;
+}
+
+}
     }
 }
 ?>
