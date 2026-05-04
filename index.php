@@ -85,7 +85,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Master<i class="right fas fa-angle-left"></i></p>
             </a>
@@ -115,11 +115,9 @@
             <?php endif; ?> 
           </li>
 
-          <li class="nav-item"><a href="index.php?page=ganti_password" class="nav-link"><i class="nav-icon fas fa-key"></i><p>Ganti Password</p></a></li>
-
           <?php if ($role == 'admin') : ?>
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Transaksi<i class="right fas fa-angle-left"></i></p>
             </a>
@@ -128,6 +126,9 @@
             </ul>
           </li>
           <?php endif; ?>
+
+          
+          <li class="nav-item"><a href="index.php?page=ganti_password" class="nav-link"><i class="nav-icon fas fa-key"></i><p>Ganti Password</p></a></li>
 
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
