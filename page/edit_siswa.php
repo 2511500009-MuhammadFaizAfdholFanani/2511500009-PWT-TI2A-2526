@@ -77,6 +77,7 @@ if(isset($_POST['simpan'])){
                     </div>
                     <div class="card-footer">
                         <input type="submit" class="btn btn-primary" name="simpan" value="simpan">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php?page=siswa'">Kembali</button>
                     </div>
                 </form>
             </div>

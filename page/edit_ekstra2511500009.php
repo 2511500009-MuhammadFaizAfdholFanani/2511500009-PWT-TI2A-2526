@@ -58,16 +58,17 @@ if(isset($_POST['simpan'])){
                     </div>
                     <div class="form-group">
                         <label for="semester009">Semester</label>
-                        <select name="semester009" value="<?= $edit['semester009']; ?>" class="form-control">
-                         <option value="">-- Pilih Tahun Ajaran --</option>
-                            <option value="1" <?= ($edit['semester009']=='Semester 1')?'selected':''; ?>>Semester 1</option>
-                            <option value="2" <?= ($edit['semester009']=='Semester 2')?'selected':''; ?>>Semester 2</option>
-                            <option value="3" <?= ($edit['semester009']=='Semester 3')?'selected':''; ?>>Semester 3</option>
-                            <option value="4" <?= ($edit['semester009']=='Semester 4')?'selected':''; ?>>Semester 4</option>
-                            <option value="5" <?= ($edit['semester009']=='Semester 5')?'selected':''; ?>>Semester 5</option>
-                            <option value="6" <?= ($edit['semester009']=='Semester 6')?'selected':''; ?>>Semester 6</option>
+                        <select name="semester009" class="form-control">
+                            <option value="">-- Pilih Semester --</option>
+                            <option value="1" <?= ($edit['semester009']==1)?'selected':''; ?>>Semester 1</option>
+                            <option value="2" <?= ($edit['semester009']==2)?'selected':''; ?>>Semester 2</option>
+                            <option value="3" <?= ($edit['semester009']==3)?'selected':''; ?>>Semester 3</option>
+                            <option value="4" <?= ($edit['semester009']==4)?'selected':''; ?>>Semester 4</option>
+                            <option value="5" <?= ($edit['semester009']==5)?'selected':''; ?>>Semester 5</option>
+                            <option value="6" <?= ($edit['semester009']==6)?'selected':''; ?>>Semester 6</option>
                         </select>
                     </div>
+
                     <div class="form-group">
                         <label for="thn_ajaran009">Tahun Ajaran</label>
                         <select name="thn_ajaran009" class="form-control">
@@ -79,6 +80,7 @@ if(isset($_POST['simpan'])){
                     </div>
                     <div class="card-footer">
                         <input type="submit" class="btn btn-primary" name="simpan" value="simpan">
+                       <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php?page=ekstra_2511500009'">Kembali</button>
                     </div>
                 </form>
             </div>
