@@ -96,6 +96,7 @@
               <li class="nav-item"><a href="index.php?page=siswa" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Siswa</p></a></li>
               <li class="nav-item"><a href="index.php?page=mapel" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Mata Pelajaran</p></a></li>
               <li class="nav-item"><a href="index.php?page=kelas" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Kelas</p></a></li>
+              <li class="nav-item"><a href="index.php?page=ekstra_2511500009" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Ekstrakurikuler</p></a></li>
             </ul>
             <?php endif; ?>   
 
