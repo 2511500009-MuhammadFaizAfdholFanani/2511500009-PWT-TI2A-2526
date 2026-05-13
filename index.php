@@ -85,55 +85,115 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>Master<i class="right fas fa-angle-left"></i></p>
             </a>
 
             <?php if ($role == 'admin') : ?>
             <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="index.php?page=guru" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Guru</p></a></li>
-              <li class="nav-item"><a href="index.php?page=siswa" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Siswa</p></a></li>
-              <li class="nav-item"><a href="index.php?page=mapel" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Mata Pelajaran</p></a></li>
-              <li class="nav-item"><a href="index.php?page=kelas" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Kelas</p></a></li>
-              <li class="nav-item"><a href="index.php?page=ekstra_2511500009" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Ekstrakurikuler</p></a></li>
+              <li class="nav-item">
+                <a href="index.php?page=guru" class="nav-link">
+                <i class="nav-icon fas fa-user"></i>
+                  <p>Guru</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?page=siswa" class="nav-link">
+                <i class="nav-icon fas fa-users"></i>
+                  <p>Siswa</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?page=mapel" class="nav-link">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>Mata Pelajaran</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?page=kelas" class="nav-link">
+                  <i class="nav-icon fas fa-school"></i>
+                  <p>Kelas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="index.php?page=ekstra_2511500009" class="nav-link">
+                  <i class="nav-icon fas fa-star"></i>
+                  <p>Ekstrakurikuler</p>
+                </a>
+              </li>
             </ul>
             <?php endif; ?>   
 
             <?php if ($role == 'guru') : ?>
             <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Profil</p></a></li>
-              <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Kelas</p></a></li>
-              <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Jadwal</p></a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Profil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Kelas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Jadwal</p>
+                </a>
+              </li>
             </ul>
             <?php endif; ?>            
 
             <?php if ($role == 'siswa') : ?>
             <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Profil</p></a></li>
-              <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Jadwal</p></a></li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Profil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Jadwal</p>
+                </a>
+              </li>
             </ul>
             <?php endif; ?> 
           </li>
 
           <?php if ($role == 'admin') : ?>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-handshake"></i>
               <p>Transaksi<i class="right fas fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item"><a href="#" class="nav-link"><i class="far fa-circle nav-icon"></i><p>Jadwal</p></a></li>
+              <li class="nav-item">
+                <a href="index.php?page=jadwal" class="nav-link">
+                  <i class="nav-icon fas fa-calendar-alt"></i>
+                  <p>Jadwal</p>
+                </a>
+              </li>
             </ul>
           </li>
           <?php endif; ?>
 
           
-          <li class="nav-item"><a href="index.php?page=ganti_password" class="nav-link"><i class="nav-icon fas fa-key"></i><p>Ganti Password</p></a></li>
+          <li class="nav-item">
+            <a href="index.php?page=ganti_password" class="nav-link">
+              <i class="nav-icon fas fa-key"></i>
+              <p>Ganti Password</p>
+            </a>
+          </li>
 
           <li class="nav-item">
             <a href="logout.php" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-sign-out-alt"></i>
               <p>Logout</p>
             </a>
           </li>

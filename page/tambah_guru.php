@@ -9,7 +9,18 @@
 </div>
 
 <?php
-// proses simpan data guru
+$carikode = mysqli_query($koneksi,"SELECT max(kd_guru) FROM guru") or die (mysqli_error($koneksi));
+$datakode = mysqli_fetch_array($carikode);
+if($datakode[0]) {
+  $nilaikode = substr($datakode[0], 2);
+  $kode = (int) $nilaikode;
+  $kode = $kode + 1;
+  $hasilkode = "G-".str_pad($kode, 3, "0", STR_PAD_LEFT);
+} else {
+  $hasilkode = "G-1";
+}
+$_SESSION["KODE"] = $hasilkode;
+
 if(isset($_POST['tambah'])){
   $kd_guru       = $_POST['kd_guru'];
   $nm_guru       = $_POST['nm_guru'];
@@ -42,7 +53,7 @@ if(isset($_POST['tambah'])){
         <form method="POST" action="">
           <div class="form-group">
             <label for="kd_guru">Kode Guru</label>
-            <input type="text" name="kd_guru" id="kd_guru" placeholder="Masukkan Kode Guru" class="form-control" maxlength="5">
+            <input type="text" name="kd_guru" id="kd_guru" class="form-control" maxlength="5" value="<?= $hasilkode; ?>" readonly>
           </div>
           <div class="form-group">
             <label for="nm_guru">Nama Guru</label>
