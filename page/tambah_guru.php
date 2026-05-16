@@ -15,9 +15,9 @@ if($datakode[0]) {
   $nilaikode = substr($datakode[0], 2);
   $kode = (int) $nilaikode;
   $kode = $kode + 1;
-  $hasilkode = "G-".str_pad($kode, 3, "0", STR_PAD_LEFT);
+ $hasilkode = "G-".str_pad($kode, 3, "0", STR_PAD_LEFT);
 } else {
-  $hasilkode = "G-1";
+  $hasilkode = "G-001";
 }
 $_SESSION["KODE"] = $hasilkode;
 

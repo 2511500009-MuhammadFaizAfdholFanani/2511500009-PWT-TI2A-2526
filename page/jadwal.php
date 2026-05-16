@@ -27,13 +27,14 @@ if(isset($_GET['action'])) {
   <div class="container-fluid">
     <div class="card">
       <div class="card-body">
-        <a href="index.php?page=tambah_jadwal" class="btn btn-primary btn-sm">Tambah Jadwal</a>
-        <table class="table table-striped">
+        <a href="index.php?page=tambah_jadwal" class="btn btn-primary btn-sm mb-3">Tambah Jadwal</a>
+        <table class="table table-striped table-bordered">
           <thead>
             <tr>
               <th>NO</th>
               <th>Id jadwal</th>
               <th>Id kelas</th>
+              <th>Nama kelas</th>
               <th>Tahun ajaran</th>
               <th>Semester</th>
               <th>Aksi</th>
@@ -42,14 +43,17 @@ if(isset($_GET['action'])) {
           <tbody>
             <?php
             $no = 0;
-            $query = mysqli_query($koneksi, "SELECT * FROM jadwal JOIN kelas ON jadwal.Id_kelas = kelas.Id_kelas");
+           $query = mysqli_query($koneksi, "SELECT jadwal.id_jadwal, jadwal.id_kelas, jadwal.thn_ajaran, jadwal.semester, kelas.nm_kelas 
+                                            FROM jadwal 
+                                            JOIN kelas ON jadwal.id_kelas = kelas.id_kelas");
             while ($result = mysqli_fetch_array($query)) {
               $no++;
             ?>
             <tr>
               <td><?= $no; ?></td>
               <td><?= $result['id_jadwal']; ?></td>
-                <td><?= $result['id_kelas']; ?></td>
+              <td><?= $result['id_kelas']; ?></td>
+              <td><?= $result['nm_kelas']; ?></td>
               <td><?= $result['thn_ajaran']; ?></td>
               <td><?= ucfirst($result['semester']); ?></td>
               <td>
