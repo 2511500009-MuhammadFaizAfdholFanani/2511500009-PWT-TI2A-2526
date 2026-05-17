@@ -88,6 +88,9 @@ if (isset($_GET['action']) && $_GET['action'] === 'hapus') {
           </tbody>
         </table>
       </div>
+      <div class="card-footer">
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='index.php?page=jadwal'">Kembali</button>
+      </div>
     </div>
   </div>
 </div>
