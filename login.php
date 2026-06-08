@@ -9,14 +9,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Log in</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https:fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
   <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
@@ -24,7 +19,6 @@
   <div class="login-logo">
     <a href="index.php"><b>Admin</b>LTE</a>
   </div>
-  <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
@@ -40,49 +34,37 @@
         </div>
         <div class="input-group mb-3">
           <input type="password" name="Password" class="form-control" id="Password" placeholder="Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-                    </div>
-                <div class="input-group-text" onclick="togglePassword()">
-                <span id="toggleIcon" class="fas fa-eye"></span>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
             </div>
+            <div class="input-group-text" onclick="togglePassword()" style="cursor:pointer;">
+              <span id="toggleIcon" class="fas fa-eye"></span>
             </div>
-            </div>
-
-        
-          <!-- /.col -->
-          <div class="col-15">
-            <button type="submit" name="login" value="login" class="btn btn-primary btn-block">Login</button>
           </div>
-          <!-- /.col -->
+        </div>
+        <div class="col-15">
+          <button type="submit" name="login" value="login" class="btn btn-primary btn-block">Login</button>
         </div>
       </form>
 
-    <!-- /.login-card-body -->
+    </div>
   </div>
 </div>
-<!-- /.login-box -->
 
-<!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <script>
 function togglePassword() {
   const passwordInput = document.getElementById("Password");
   const toggleIcon = document.getElementById("toggleIcon");
-
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
-    toggleIcon.classList.remove("fa-eye");
-    toggleIcon.classList.add("fa-eye-slash");
+    toggleIcon.classList.replace("fa-eye", "fa-eye-slash");
   } else {
     passwordInput.type = "password";
-    toggleIcon.classList.remove("fa-eye-slash");
-    toggleIcon.classList.add("fa-eye");
+    toggleIcon.classList.replace("fa-eye-slash", "fa-eye");
   }
 }
 </script>
@@ -90,29 +72,55 @@ function togglePassword() {
 </html>
 
 <?php
-if (isset($_POST['Username'])) {
+if (isset($_POST['login'])) {
     $Username = $_POST['Username'];
     $Password = $_POST['Password'];
 
     if (empty($Username) || empty($Password)) {
-        echo "Data Tidak Boleh kosong";
+        echo "<script>alert('Username dan Password tidak boleh kosong!');</script>";
     } else {
-        $userquery = mysqli_fetch_array(mysqli_query($koneksi, "SELECT * FROM users WHERE Username = '$Username' AND Password = '$Password'"));
-        
-      if ($userquery) {
-    $_SESSION['Role'] = $userquery['Role'];
-    $_SESSION['Username'] = $Username;
+        $userquery = mysqli_fetch_array(
+            mysqli_query($koneksi, "SELECT * FROM users WHERE Username = '$Username' AND Password = '$Password'")
+        );
 
-    // setelah ambil data user dari database
-if ($userquery['Password'] == '1234' && ($userquery['Role'] == 'guru' || $userquery['Role'] == 'siswa')) {
-    header("Location: index.php?page=ganti_password");
-    exit;
-} else {
-    header("Location: index.php");
-    exit;
-}
+        if ($userquery) {
+            $role = $userquery['Role'];
+            $_SESSION['Role']     = $role;
+            $_SESSION['Username'] = $Username;
 
-}
+            // Simpan data tambahan ke session sesuai role
+            if ($role == 'guru') {
+                // Cari kd_guru berdasarkan nm_guru yang mirip dengan Username
+                $sqlGuru = "SELECT kd_guru, nm_guru FROM guru WHERE nm_guru LIKE '%$Username%' LIMIT 1";
+                $resGuru = mysqli_fetch_array(mysqli_query($koneksi, $sqlGuru));
+                if ($resGuru) {
+                    $_SESSION['kd_guru'] = $resGuru['kd_guru'];
+                    $_SESSION['nm_guru'] = $resGuru['nm_guru'];
+                }
+            }
+
+            if ($role == 'siswa') {
+                // Cari nis dan id_kelas berdasarkan nm_siswa yang mirip dengan Username
+                $sqlSiswa = "SELECT nis, nm_siswa, id_kelas FROM siswa WHERE nm_siswa LIKE '%$Username%' LIMIT 1";
+                $resSiswa = mysqli_fetch_array(mysqli_query($koneksi, $sqlSiswa));
+                if ($resSiswa) {
+                    $_SESSION['nis']      = $resSiswa['nis'];
+                    $_SESSION['nm_siswa'] = $resSiswa['nm_siswa'];
+                    $_SESSION['id_kelas'] = $resSiswa['id_kelas'];
+                }
+            }
+
+            // Redirect jika password masih default
+            if ($userquery['Password'] == '1234' && ($role == 'guru' || $role == 'siswa')) {
+                header("Location: index.php?page=ganti_password");
+                exit;
+            } else {
+                header("Location: index.php");
+                exit;
+            }
+        } else {
+            echo "<script>alert('Username atau Password salah!');</script>";
+        }
     }
 }
 ?>

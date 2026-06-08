@@ -80,7 +80,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'hapus') {
               <td><?= $hari; ?></td>
               <td><?= $jamMulai; ?> s.d <?= $jamSelesai; ?></td>
               <td>
-                <a href="index.php?page=edit_detail_jadwal&id_jadwal=<?= $result['id_jadwal']; ?>&kd_mapel=<?= $result['kd_mapel']; ?>&kd_guru=<?= $result['kd_guru']; ?>" class="badge badge-warning">Edit</a>
+                <a href="index.php?page=editDetail_jadwal&id_jadwal=<?= $result['id_jadwal']; ?>&kd_mapel=<?= $result['kd_mapel']; ?>&kd_guru=<?= $result['kd_guru']; ?>" class="badge badge-warning">Edit</a>
                 <a href="index.php?page=detail_jadwal&action=hapus&id_jadwal=<?= $result['id_jadwal']; ?>&kd_mapel=<?= $result['kd_mapel']; ?>&kd_guru=<?= $result['kd_guru']; ?>" onclick="return confirm('Yakin ingin menghapus data ini?')" class="badge badge-danger">Hapus</a>
               </td>
             </tr>
